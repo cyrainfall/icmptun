@@ -31,6 +31,12 @@ jobs:
       - name: go build
         run: go build ./...
 
+      - name: go test
+        run: go test ./...
+
+      - name: selftest binary
+        run: go run . -mode selftest
+
   formatting:
     name: gofmt
     runs-on: ubuntu-latest

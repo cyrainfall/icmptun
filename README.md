@@ -44,6 +44,28 @@ runtime dependencies.
 go build -o icmptun .
 ```
 
+## Verify it without a network
+
+```sh
+$ ./icmptun -mode selftest
+icmptun selftest: 8 checks, no raw socket needed
+
+  ok    1/8  frame round-trip preserves every field
+  ok    2/8  header layout: 60 B, magic/version/linkid/len
+  ok    3/8  decoder rejects malformed frames
+  ok    4/8  FEC: parity emit + single-loss recovery
+  ok    5/8  SACK bitmap: bit set means missing
+  ok    6/8  mux framing: [type][stream][len][data]
+  ok    7/8  ICMP checksum, valid and suppressed
+  ok    8/8  server mirrors the client's ICMP id/seq
+
+8 passed, 0 failed in 412µs
+```
+
+No root, no socket, nothing leaves the machine. The checks cover the frame layout,
+the FEC parity path (including recovery of a dropped packet), SACK bitmap polarity,
+mux framing and the ICMP checksum trick. `go test ./...` runs the same code.
+
 ## 30-second start
 
 Two hosts, both with raw-socket privileges (root / Administrator).

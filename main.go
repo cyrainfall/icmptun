@@ -19,7 +19,7 @@ import (
 )
 
 func main() {
-	mode := flag.String("mode", "client", "client|server")
+	mode := flag.String("mode", "client", "client|server|selftest")
 	peer := flag.String("peer", "", "peer IPv4 address (client only)")
 	socks := flag.String("socks", "127.0.0.1:1080", "local SOCKS5 listener (client only)")
 	httpAddr := flag.String("http", "", "local HTTP proxy listener (client only, e.g. 127.0.0.1:8118)")
@@ -37,6 +37,12 @@ func main() {
 	flag.Parse()
 
 	log.SetFlags(log.Ltime | log.Lmicroseconds)
+
+	// -mode selftest runs the protocol checks and exits; it never opens a socket,
+	// so it works as an ordinary user and is safe to run in CI.
+	if *mode == "selftest" {
+		os.Exit(runSelfTests(os.Stdout))
+	}
 
 	var dialFn func(string) (net.Conn, error)
 	if *mode == "server" {

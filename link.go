@@ -171,8 +171,17 @@ type Link struct {
 	drops            uint64
 }
 
+// Socket creation and packet transmission are indirected through variables so
+// that `go test` and `-mode selftest` can exercise the real framing, FEC and
+// checksum paths without a privileged raw socket. Production code never
+// reassigns them.
+var (
+	openRawSocket = openRawICMP
+	sendPacket    = rawSend
+)
+
 func NewLink(isCli bool, linkID uint8, maxData, wnd, fecK, pps int, suppress, verbose bool) (*Link, error) {
-	fd, err := openRawICMP()
+	fd, err := openRawSocket()
 	if err != nil {
 		return nil, err
 	}
@@ -336,7 +345,7 @@ func (l *Link) sendFrameLocked(f *Frame) {
 		n = 1
 	}
 	for i := 0; i < n; i++ {
-		if err := rawSend(l.fd, pkt, l.dst); err != nil {
+		if err := sendPacket(l.fd, pkt, l.dst); err != nil {
 			l.drops++
 			return
 		}

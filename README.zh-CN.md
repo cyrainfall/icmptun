@@ -37,6 +37,20 @@
 go build -o icmptun .
 ```
 
+## 不联网也能验证
+
+```sh
+$ ./icmptun -mode selftest
+icmptun selftest: 8 checks, no raw socket needed
+  ok    1/8  frame round-trip preserves every field
+  ...
+8 passed, 0 failed in 412µs
+```
+
+不需要 root、不开 socket、不发出任何包。覆盖帧布局、FEC 校验包生成与丢包恢复、
+SACK 位图极性、mux 帧格式、ICMP 校验和与 `-suppress` 行为。
+`go test ./...` 跑的是同一套检查。
+
 ## 30 秒起步
 
 两端都需要 raw socket 权限（root / 管理员）。
