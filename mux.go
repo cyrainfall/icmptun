@@ -3,10 +3,10 @@ package main
 import (
 	"encoding/binary"
 	"io"
-	"net"
-	"sync"
-	"os"
 	"log"
+	"net"
+	"os"
+	"sync"
 )
 
 const (

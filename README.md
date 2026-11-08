@@ -31,6 +31,19 @@ Linux, macOS and Windows.
 | a benchmarkable protocol implementation | a stealth or undetectable channel; it is a bare ICMP tunnel |
 | a single-purpose tool you can read in an afternoon | production infrastructure; there is no HA, no failover |
 
+## Install
+
+**Prebuilt binaries** for Linux, macOS and Windows (amd64 and arm64) are on the
+[releases page](https://github.com/cyrainfall/icmptun/releases), together with a
+`SHA256SUMS` file. There is nothing to configure — a single static binary, no
+runtime dependencies.
+
+**From source** (Go 1.22+):
+
+```sh
+go build -o icmptun .
+```
+
 ## 30-second start
 
 Two hosts, both with raw-socket privileges (root / Administrator).

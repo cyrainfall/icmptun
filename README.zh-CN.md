@@ -25,6 +25,18 @@
 | 一个可测量的协议实现（有实测表、有失败记录） | 隐蔽通道：它就是一条裸 ICMP 隧道，不伪装 |
 | 一个下午能读完的单文件程序 | 生产级基础设施：没有高可用、当前树里没有自动 failover |
 
+## 安装
+
+**预编译二进制**（Linux / macOS / Windows，amd64 与 arm64）在
+[Releases](https://github.com/cyrainfall/icmptun/releases)，同页附 `SHA256SUMS`。
+单文件静态二进制，无运行时依赖，不需要配置。
+
+**从源码构建**（Go 1.22+）：
+
+```sh
+go build -o icmptun .
+```
+
 ## 30 秒起步
 
 两端都需要 raw socket 权限（root / 管理员）。
