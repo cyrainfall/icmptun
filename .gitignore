@@ -1,5 +1,6 @@
 # Build artifacts (cross-compiled elsewhere, never committed)
 dist/
+/icmptun
 icmptun-darwin
 icmptun-linux
 icmptun.exe
