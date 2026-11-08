@@ -12,8 +12,8 @@ remaining channel and then does the hard part — making it behave like a link:
 - an **ICMP id/seq mirroring** trick that survives CGNAT;
 - a **progress-based watchdog** that tells "the link is idle" apart from "the tunnel died silently".
 
-Written in Go, **standard library only**, ~1.7k lines. Builds as a single static binary for
-Linux, macOS and Windows.
+Written in Go, **standard library only**, ~2k lines including the offline selftest. Builds as a
+single static binary for Linux, macOS and Windows.
 
 📖 **[The long version](docs/story.md)** — why this exists, the seven approaches that
 failed first, and the five fixes that took it from 0 to 1.3 MB/s.
