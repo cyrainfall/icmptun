@@ -1,0 +1,8 @@
+# Build artifacts (cross-compiled elsewhere, never committed)
+dist/
+icmptun-darwin
+icmptun-linux
+icmptun.exe
+
+# Local operations notes
+SESSION-REPORT.md

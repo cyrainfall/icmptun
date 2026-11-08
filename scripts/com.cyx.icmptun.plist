@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>KeepAlive</key>
+	<true/>
+	<key>Label</key>
+	<string>com.cyx.icmptun</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/opt/icmptun/icmptun-darwin</string>
+		<string>-mode</string>
+		<string>client</string>
+		<string>-peer</string>
+		<string>__PEER__</string>
+		<string>-socks</string>
+		<string>127.0.0.1:1080</string>
+		<string>-http</string>
+		<string>127.0.0.1:8118</string>
+		<string>-wnd</string>
+		<string>4096</string>
+		<string>-fec</string>
+		<string>8</string>
+		<string>-payload</string>
+		<string>1350</string>
+		<string>-pps</string>
+		<string>20000</string>
+		<string>-watchdog</string>
+		<string>90</string>
+		<string>-linkid</string>
+		<string>__LINKID__</string>
+		<string>-suppress=false</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/var/log/icmptun-client.log</string>
+	<key>StandardOutPath</key>
+	<string>/var/log/icmptun-client.log</string>
+	<key>ThrottleInterval</key>
+	<integer>5</integer>
+</dict>
+</plist>
